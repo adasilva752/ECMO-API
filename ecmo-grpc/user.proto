@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option go_package = "github.com/adasilva752/ECMO-API/user";
+
+message CreateRequest{
+    string username = 1;
+    string password = 2;
+}
+
+message CreateResponse{
+    string response = 1;
+    string confirmPass = 2;
+    bytes data = 3;
+}
+
+
+service user{
+    rpc Create(CreateRequest) returns (CreateResponse);
+}
