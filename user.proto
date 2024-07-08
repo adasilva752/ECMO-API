@@ -1,19 +1,26 @@
 syntax = "proto3";
 
+import "google/api/annotations.proto";
+
 option go_package = "github.com/adasilva752/ECMO-API/user";
 
-message CreateRequest{
+message CreateRequest {
     string username = 1;
     string password = 2;
+    bytes number = 3;
 }
 
-message CreateResponse{
-    string response = 1;
+message CreateResponse {
+    string welcome = 1;
     string confirmPass = 2;
-    bytes data = 3;
+    string response = 3;
 }
 
-
-service user{
-    rpc Create(CreateRequest) returns (CreateResponse);
+service user {
+    rpc Create(CreateRequest) returns (CreateResponse) {
+        option (google.api.http) = {
+            post: "/v1/user/create"
+            body: "*"
+        };
+    }
 }
